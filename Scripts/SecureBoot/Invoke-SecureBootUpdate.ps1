@@ -339,13 +339,8 @@ if ($updateResult.UpdateTriggered) {
     Write-ActionMessage -Message 'Nach dem Neustart das Skript erneut ausfuehren um den Status zu pruefen.' -Type Info
 
     Write-Host ''
-    $reboot = Read-Host '  Jetzt neustarten? (J/N)'
-    if ($reboot -eq 'J') {
-        Restart-Computer -Force
-    }
-    else {
-        Write-ActionMessage -Message 'Neustart wurde verschoben. Bitte manuell neustarten.' -Type Warning
-    }
+    Write-ActionMessage -Message 'Neustart wurde verschoben. Bitte manuell neustarten.' -Type Warning
+    
 }
 else {
     Write-ActionMessage -Message "Update konnte nicht gestartet werden: $($updateResult.Reason)" -Type Error
