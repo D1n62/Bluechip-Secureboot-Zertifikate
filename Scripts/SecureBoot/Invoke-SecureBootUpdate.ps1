@@ -93,6 +93,8 @@ $modeName = if ($Info) { 'Info' } elseif ($ApplyUpdate) { 'ApplyUpdate' } else {
 $boardInfo = Get-BoardInfo
 $logName   = ($boardInfo.Modell + '_' + $boardInfo.BiosVersion) -replace '[\\/:*?"<>|]', '_'
 $logPath   = Join-Path $PSScriptRoot ("{0}-{1}.log" -f $logName, $modeName)
+$URL = "https://cim.d1ng2.net/api/empfang"
+$TOKEN = "MIB-GMBH-757"
 Start-Transcript -Path $logPath -Force | Out-Null
 #endregion
 
