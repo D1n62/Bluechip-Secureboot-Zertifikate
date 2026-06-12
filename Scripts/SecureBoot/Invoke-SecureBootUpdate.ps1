@@ -125,6 +125,9 @@ if ($Check) {
             biosDatum           = $boardInfo.BiosDatum
             logDatei            = $logPath
             status              = "erfolgreich"
+            seriennummer        = $systemInfo.SerialNumber
+            biosSeriennummer    = $biosInfo.SerialNumber
+            uuid                = $systemInfo.UUID
         }
 
         $headers = @{
@@ -325,6 +328,9 @@ if (-not $has2023Issues) {
         biosDatum           = $boardInfo.BiosDatum
         logDatei            = $logPath
         status              = "erfolgreich-bereits-vorhanden"
+        seriennummer        = $systemInfo.SerialNumber
+        biosSeriennummer    = $biosInfo.SerialNumber
+        uuid                = $systemInfo.UUID
     }
 
     $headers = @{
@@ -455,6 +461,9 @@ if ($updateResult.UpdateTriggered) {
         biosDatum           = $boardInfo.BiosDatum
         logDatei            = $logPath
         status              = "erfolgreich"
+        seriennummer        = $systemInfo.SerialNumber
+        biosSeriennummer    = $biosInfo.SerialNumber
+        uuid                = $systemInfo.UUID
     }
 
     $headers = @{
@@ -514,8 +523,10 @@ else {
         biosVersion         = $boardInfo.BiosVersion
         biosDatum           = $boardInfo.BiosDatum
         logDatei            = $logPath
-
         status              = "Fehlerhaft"
+        seriennummer        = $systemInfo.SerialNumber
+        biosSeriennummer    = $biosInfo.SerialNumber
+        uuid                = $systemInfo.UUID
     }
 
     $headers = @{

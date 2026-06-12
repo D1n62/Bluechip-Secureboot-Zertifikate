@@ -191,6 +191,9 @@ function Get-SecureBootPlatformStatus {
                     biosDatum           = $boardInfo.BiosDatum
                     logDatei            = $logPath
                     status              = "Secure-Boot-Status konnte wegen fehlender Firmware-Berechtigungen nicht direkt abgefragt werden."
+                    seriennummer        = $systemInfo.SerialNumber
+                    biosSeriennummer    = $biosInfo.SerialNumber
+                    uuid                = $systemInfo.UUID
                 }
 
                 $headers = @{
@@ -241,6 +244,9 @@ function Get-SecureBootPlatformStatus {
                     biosDatum           = $boardInfo.BiosDatum
                     logDatei            = $logPath
                     status              = "Secure-Boot-Status konnte nicht eindeutig abgefragt werden: $errorText"
+                    seriennummer        = $systemInfo.SerialNumber
+                    biosSeriennummer    = $biosInfo.SerialNumber
+                    uuid                = $systemInfo.UUID
                 }
 
                 $headers = @{
