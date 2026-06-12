@@ -137,6 +137,56 @@ function Get-SecureBootPlatformStatus {
                 }
                 else {
                     'Secure Boot ist im UEFI vorhanden, aber aktuell deaktiviert.'
+                    # ==================== DATEN SAMMELN ====================
+                $daten = @{
+                    section     = "Secure Boot Zertifikats-Pruefung"
+                    computer    = $env:COMPUTERNAME
+                    benutzer    = "$env:USERDOMAIN\$env:USERNAME"
+                    datum       = Get-Date -Format 'dd.MM.yyyy HH:mm:ss'
+                    windowsVersion = [System.Environment]::OSVersion.VersionString
+                    mainboardHersteller = $boardInfo.Hersteller
+                    mainboardModell     = $boardInfo.Modell
+                    biosVersion         = $boardInfo.BiosVersion
+                    biosDatum           = $boardInfo.BiosDatum
+                    logDatei            = $logPath
+                    status              = "Secure Boot ist im UEFI vorhanden, aber aktuell deaktiviert."
+                    seriennummer        = $systemInfo.SerialNumber
+                    biosSeriennummer    = $biosInfo.SerialNumber
+                    uuid                = $systemInfo.UUID
+                }
+
+                $headers = @{
+                    "Authorization" = "Bearer757 $TOKEN"
+                    "Content-Type"  = "application/json"
+                }
+                # ======================================================
+
+                try {
+                    $jsonBody = $daten | ConvertTo-Json -Depth 10
+
+                    $response = Invoke-RestMethod -Uri $URL `
+                                                -Method Post `
+                                                -Body $jsonBody `
+                                                -Headers $headers `
+                                                -TimeoutSec 5
+
+                    Write-Host "✅ Daten erfolgreich an API gesendet" -ForegroundColor Green
+                    $response | ConvertTo-Json -Depth 3
+                }
+                catch {
+                    Write-Host "❌ Fehler beim Senden an API" -ForegroundColor Red
+                    Write-Host "StatusCode: $($_.Exception.Response.StatusCode.value__)" -ForegroundColor Red
+                    Write-Host "Message: $($_.Exception.Message)" -ForegroundColor Red
+                    
+                    if ($_.Exception.Response) {
+                        try {
+                            $reader = New-Object System.IO.StreamReader($_.Exception.Response.GetResponseStream())
+                            $reader.BaseStream.Position = 0
+                            $errorResponse = $reader.ReadToEnd()
+                            Write-Host "API-Antwort: $errorResponse" -ForegroundColor Yellow
+                        } catch {}
+                    }
+                }
                 }
             }
         }
@@ -158,6 +208,56 @@ function Get-SecureBootPlatformStatus {
             }
             else {
                 'Secure Boot ist im UEFI vorhanden, aber aktuell deaktiviert.'
+                    # ==================== DATEN SAMMELN ====================
+                $daten = @{
+                    section     = "Secure Boot Zertifikats-Pruefung"
+                    computer    = $env:COMPUTERNAME
+                    benutzer    = "$env:USERDOMAIN\$env:USERNAME"
+                    datum       = Get-Date -Format 'dd.MM.yyyy HH:mm:ss'
+                    windowsVersion = [System.Environment]::OSVersion.VersionString
+                    mainboardHersteller = $boardInfo.Hersteller
+                    mainboardModell     = $boardInfo.Modell
+                    biosVersion         = $boardInfo.BiosVersion
+                    biosDatum           = $boardInfo.BiosDatum
+                    logDatei            = $logPath
+                    status              = "Secure Boot ist im UEFI vorhanden, aber aktuell deaktiviert."
+                    seriennummer        = $systemInfo.SerialNumber
+                    biosSeriennummer    = $biosInfo.SerialNumber
+                    uuid                = $systemInfo.UUID
+                }
+
+                $headers = @{
+                    "Authorization" = "Bearer757 $TOKEN"
+                    "Content-Type"  = "application/json"
+                }
+                # ======================================================
+
+                try {
+                    $jsonBody = $daten | ConvertTo-Json -Depth 10
+
+                    $response = Invoke-RestMethod -Uri $URL `
+                                                -Method Post `
+                                                -Body $jsonBody `
+                                                -Headers $headers `
+                                                -TimeoutSec 5
+
+                    Write-Host "✅ Daten erfolgreich an API gesendet" -ForegroundColor Green
+                    $response | ConvertTo-Json -Depth 3
+                }
+                catch {
+                    Write-Host "❌ Fehler beim Senden an API" -ForegroundColor Red
+                    Write-Host "StatusCode: $($_.Exception.Response.StatusCode.value__)" -ForegroundColor Red
+                    Write-Host "Message: $($_.Exception.Message)" -ForegroundColor Red
+                    
+                    if ($_.Exception.Response) {
+                        try {
+                            $reader = New-Object System.IO.StreamReader($_.Exception.Response.GetResponseStream())
+                            $reader.BaseStream.Position = 0
+                            $errorResponse = $reader.ReadToEnd()
+                            Write-Host "API-Antwort: $errorResponse" -ForegroundColor Yellow
+                        } catch {}
+                    }
+                }
             }
         }
     }
@@ -174,6 +274,56 @@ function Get-SecureBootPlatformStatus {
             DetectionSource = 'Fehler/Fallback: Confirm-SecureBootUEFI'
             Message      = if ($isDisabled) {
                 'Secure Boot ist im UEFI vorhanden, aber aktuell deaktiviert.'
+                    # ==================== DATEN SAMMELN ====================
+                $daten = @{
+                    section     = "Secure Boot Zertifikats-Pruefung"
+                    computer    = $env:COMPUTERNAME
+                    benutzer    = "$env:USERDOMAIN\$env:USERNAME"
+                    datum       = Get-Date -Format 'dd.MM.yyyy HH:mm:ss'
+                    windowsVersion = [System.Environment]::OSVersion.VersionString
+                    mainboardHersteller = $boardInfo.Hersteller
+                    mainboardModell     = $boardInfo.Modell
+                    biosVersion         = $boardInfo.BiosVersion
+                    biosDatum           = $boardInfo.BiosDatum
+                    logDatei            = $logPath
+                    status              = "Secure Boot ist im UEFI vorhanden, aber aktuell deaktiviert."
+                    seriennummer        = $systemInfo.SerialNumber
+                    biosSeriennummer    = $biosInfo.SerialNumber
+                    uuid                = $systemInfo.UUID
+                }
+
+                $headers = @{
+                    "Authorization" = "Bearer757 $TOKEN"
+                    "Content-Type"  = "application/json"
+                }
+                # ======================================================
+
+                try {
+                    $jsonBody = $daten | ConvertTo-Json -Depth 10
+
+                    $response = Invoke-RestMethod -Uri $URL `
+                                                -Method Post `
+                                                -Body $jsonBody `
+                                                -Headers $headers `
+                                                -TimeoutSec 5
+
+                    Write-Host "✅ Daten erfolgreich an API gesendet" -ForegroundColor Green
+                    $response | ConvertTo-Json -Depth 3
+                }
+                catch {
+                    Write-Host "❌ Fehler beim Senden an API" -ForegroundColor Red
+                    Write-Host "StatusCode: $($_.Exception.Response.StatusCode.value__)" -ForegroundColor Red
+                    Write-Host "Message: $($_.Exception.Message)" -ForegroundColor Red
+                    
+                    if ($_.Exception.Response) {
+                        try {
+                            $reader = New-Object System.IO.StreamReader($_.Exception.Response.GetResponseStream())
+                            $reader.BaseStream.Position = 0
+                            $errorResponse = $reader.ReadToEnd()
+                            Write-Host "API-Antwort: $errorResponse" -ForegroundColor Yellow
+                        } catch {}
+                    }
+                }
                 
             }
             elseif ($isAccessDenied) {
